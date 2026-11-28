@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Throwaway test fixture"
+paths = ['^tests/fixtures/password-hash$']

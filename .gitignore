@@ -1,0 +1,5 @@
+result
+result-*
+
+# QEMU EFI variable store written next to the tree by vmWithDisko
+*-efi-vars.fd

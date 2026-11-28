@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+while read -r local_ref local_oid _; do
+  if [[ "$local_ref" != "(delete)" ]]; then
+    nix flake check -L --no-write-lock-file "git+file:./?rev=$local_oid" </dev/null
+  fi
+done

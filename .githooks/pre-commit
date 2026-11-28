@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+treefmt --ci
+statix check
+deadnix --fail
+gitleaks git --pre-commit --staged
+
+# tests/fixtures holds a throwaway password hash; no host or module may reach it.
+if git grep --cached -n -e 'tests/fixtures' -- '*.nix' ':!tests/'; then
+  echo 'tests/fixtures may only be referenced from tests/' >&2
+  exit 1
+fi
